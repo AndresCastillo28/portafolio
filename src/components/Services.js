@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 //icon
-import { BsArrowLeft, BsArrowRight, BsArrowUpRight, } from "react-icons/bs";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { MdOutlineDesignServices } from "react-icons/md";
-
-
 //motion
 import { motion } from "framer-motion";
 //variants
@@ -13,36 +11,80 @@ const services = [
   {
     name: "Software Analysis and Design",
     description:
-      "Comprises gathering requirements, identifying problems, and creating software solutions.",
-    link: "Learn More",
-    icon: "BsArrowUpRight"
+      "Comprises gathering requirements, identifying problems, and creating software solutions."
   },
   {
     name: "Software Development",
     description:
-      "Implement the designed solution using various tools and technologies.",
-    link: "Learn More",
+      "Implement the designed solution using various tools and technologies."
   },
   {
     name: "Software Documentation",
     description:
       "Create technical documentation to help users and developers understand the software and how it works.",
-    icon: 'MdOutlineDesignServices',
-    link: "Learn More",
+    icon: "MdOutlineDesignServices"
   },
-  // {
-  //   name: "MONGO DB",
-  //   description: "MongoDB es una base de datos NoSQL de código abierto, escalable y eficiente, que almacena datos en documentos JSON y ofrece características útiles para la gestión de datos.",
-  //   link: "Learn More",
-  // },
+  {
+    name: "Software Maintenance",
+    description:
+      "Update and improve the software after it's released to fix bugs and add new functionality."
+  },
+  {
+    name: "Software project management",
+    description:
+      "planning and coordinating the work of team members to meet project deadlines and goals."
+  }
 ];
 
 const Services = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [elementsPerPage, setElementsPerPage] = useState(2);
+  const [items, setItems] = useState([...services]);
+
+  function displayItems() {
+    const indexOfLastElement = currentPage * elementsPerPage;
+    const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+    const currentElements = items.slice(
+      indexOfFirstElement,
+      indexOfLastElement
+    );
+    return currentElements.map((item, index) => (
+      <div
+        key={index}
+        className="border-b border-white/20 h-[146px] flex mb-[38px]"
+      >
+        <div className="max-w-[476px]">
+          <h4 className="text-[20px] tracking-wider font-primary font-semibold mb-6"
+          >
+            {item.name}
+          </h4>
+          <p className="font-secondary leading-tight">{item.description}</p>
+        </div>
+        <div className="flex flex-col flex-1 items-end">
+          <button
+            href="#"
+            className="btn w-9 h-9 mb-[42px] flex justify-center items-center"
+          >
+            <MdOutlineDesignServices />
+          </button>
+        </div>
+      </div>
+    ));
+  }
+
+  function handlePageChange(direction) {
+    if (direction === "next") {
+      setCurrentPage(currentPage + 1);
+    } else if (direction === "prev" && currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+  const totalPages = Math.ceil(items.length / elementsPerPage);
   return (
     <section className="section" id="services">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row">
-          {/*text & image*/}
           <motion.div
             variants={fadeIn("right", 0.3)}
             initial="hidden"
@@ -56,7 +98,6 @@ const Services = () => {
             </h3>
             <button className="btn btn-sm">See my Work</button>
           </motion.div>
-          {/*services*/}
           <motion.div
             variants={fadeIn("left", 0.5)}
             initial="hidden"
@@ -64,53 +105,24 @@ const Services = () => {
             viewport={{ once: false, amount: 0.3 }}
             className="flex-1"
           >
-            {/**Services list */}
             <div>
-              {services.map((service, index) => {
-                //destructure service
-                const { name, description, link } = service;
-                return (
-                  <div
-                    key={index}
-                    className={`border-b border-white/20 h-[146px] flex ${
-                      index === services.length - 1 ? 'mb-[15px]' : 'mb-[38px]'
-                    }`}
-                  >
-                    <div className="max-w-[476px]">
-                      <h4 className="text-[20px] tracking-wider font-primary font-semibold mb-6">
-                        {name}
-                      </h4>
-                      <p className="font-secondary leading-tight">
-                        {description}
-                      </p>
-                    </div>
-                    <div className="flex flex-col flex-1 items-end">
-                      <a
-                        href="#"
-                        className="btn w-9 h-9 mb-[42px] flex justify-center items-center"
-                      >
-                        <MdOutlineDesignServices />
-                      </a>
-                      {/* <a href="#" className="text-gradient text-sm">
-                        {link}
-                      </a> */}
-                    </div>
-                  </div>
-                );
-              })}
+              {displayItems()}
               <div class="flex justify-between mt-3">
-                <a
+                <button
                   href="#"
                   className="btn w-9 h-9 mb-[42px] flex justify-center items-center"
+                  onClick={() => handlePageChange("prev")}
+                  disabled={currentPage === 1}
                 >
                   <BsArrowLeft />
-                </a>
-                <a
-                  href="#"
+                </button>
+                <button
                   className="btn w-9 h-9 mb-[42px] flex justify-center items-center"
+                  onClick={() => handlePageChange("next")}
+                  disabled={currentPage === totalPages}
                 >
                   <BsArrowRight />
-                </a>
+                </button>
               </div>
             </div>
           </motion.div>
