@@ -61,16 +61,6 @@ const About = () => {
                   Completed
                 </div>
               </div>
-              {/* <div>
-                <div className="text-[40px] font-tertiary text-gradient mb-2">
-                  {inView ? <CountUp start={0} end={5} duration={3} /> : null}{" "}
-                  
-                </div>
-                <div className="font-primary text-sm tracking-[2px]">
-                  Satified <br />
-                  Clients
-                </div>
-              </div> */}
             </div>
             <div className="flex gap-x-8 items-center">
               <button className="btn btn-lg">Contact me</button>

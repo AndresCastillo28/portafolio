@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 //motion
 import { motion } from "framer-motion";
 //variants
 import { fadeIn } from "../variants";
 
 const Contact = () => {
+
+  const [ form, setForm ] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prevState) => ({ ...prevState, [name]: value }));
+    console.log(form)
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <section className="py-16 lg:section" id="contact">
       <div className="container mx-auto">
@@ -27,7 +44,7 @@ const Contact = () => {
             </div>
           </motion.div>
           {/* form */}
-          <motion.form 
+          <motion.form onSubmit={ handleFormSubmit } autoComplete="off"
            variants={fadeIn('left', 0.3)}
            initial='hidden'
            whileInView={'show'}
@@ -36,18 +53,27 @@ const Contact = () => {
             <input
               type="text"
               className="bg-transparent border-b py-3 outline-none w-full placeholder:text-white focus:border-accent transition-all"
+              name="name"
+              value={form.name}
+              onChange={handleInputChange}
               placeholder="Your name"
             />
              <input
               type="text"
               className="bg-transparent border-b py-3 outline-none w-full placeholder:text-white focus:border-accent transition-all"
+              name="email"
+              value={form.email}
+              onChange={handleInputChange}
               placeholder="Your email"
             />
             <textarea className="bg-transparent border-b py-12 outline-none w-full placeholder:text-white focus:border-accent transition-all rezise-none mb-12"
+            name="message"
+            value={form.message}
+            onChange={handleInputChange}
             placeholder="Your message"
             >
             </textarea>
-            <button className="btn btn-lg">
+            <button className="btn btn-lg" type="submit">
               Send Message
             </button>
           </motion.form>
