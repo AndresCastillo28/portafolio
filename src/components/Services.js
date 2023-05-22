@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { MdOutlineDesignServices } from "react-icons/md";
 //motion
-import { motion } from "framer-motion";
+import { AnimateSharedLayout, motion } from "framer-motion";
 //variants
 import { fadeIn } from "../variants";
 //services data
