@@ -6,9 +6,12 @@ import { useInView } from "react-intersection-observer";
 //motion
 import { motion } from "framer-motion";
 //variant
-import { fadeIn } from "../variants";
+import { fadeIn } from "../../variants";
+import { Link } from "react-scroll";
+import * as router from 'react-router-dom';
 
-const About = () => {
+
+export const About = () => {
   const [ref, inView] = useInView({
     threshold: 0.5,
   });
@@ -34,11 +37,12 @@ const About = () => {
           >
             <h2 className="h2 text-accent">About me</h2>
             <h3 className="h3 mb-4">
-            I'm a software engineering student at the South Colombian
-            University of Colombia
+              I'm a software engineering student at the South Colombian
+              University of Colombia
             </h3>
             <p className="mb-6">
-            Here is a list of the different projects I have worked on, along with their current status of completion
+              Here is a list of the different projects I have worked on, along
+              with their current status of completion
             </p>
             {/* stats */}
             <div className="flex gap-x-6 lg:gap-x-10 mb-12">
@@ -54,7 +58,6 @@ const About = () => {
               <div>
                 <div className="text-[40px] font-tertiary text-gradient mb-2">
                   {inView ? <CountUp start={0} end={5} duration={3} /> : null}{" "}
-                  
                 </div>
                 <div className="font-primary text-sm tracking-[2px]">
                   Projects <br />
@@ -63,10 +66,12 @@ const About = () => {
               </div>
             </div>
             <div className="flex gap-x-8 items-center">
-              <button className="btn btn-lg">Contact me</button>
-              <a href="#" className="text-gradient btn-link">
+              <Link to="contact" smooth={true} spy={true}>
+                <button className="btn btn-lg">Contact me</button>
+              </Link>
+              <router.Link to="/portafolio" className="text-gradient btn-link">
                 My Portafolio
-              </a>
+              </router.Link>
             </div>
           </motion.div>
         </div>
@@ -74,5 +79,3 @@ const About = () => {
     </div>
   );
 };
-
-export default About;

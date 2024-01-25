@@ -1,6 +1,6 @@
 import React from "react";
 //images
-import Image from "../assets/banner.svg";
+import Image from '../../assets/banner.svg'
 //icons
 import { FaGithub, FaInstagram, FaFacebook, FaLinkedinIn } from "react-icons/fa";
 //type animation
@@ -8,9 +8,11 @@ import { TypeAnimation } from "react-type-animation";
 //motion
 import { motion } from "framer-motion";
 //variants
-import { fadeIn } from "../variants";
+import { fadeIn } from "../../variants";
+import { Link } from "react-scroll";
+import * as router from 'react-router-dom'
 
-const Banner = () => {
+export const Banner = () => {
   return (
     <section
       className="min-h-[85vh] lg:min-h-[78vh] flex items-center"
@@ -69,10 +71,12 @@ const Banner = () => {
               viewport={{ once: false, amount: 0.7 }}
               className="flex max-w-max gap-x-6 items-center mb-12 mx-auto lg:mx-0"
             >
-              <button className="btn btn-lg">Contact me</button>
-              <a href="#" className="text-gradient btn-link">
+              <Link to="contact" smooth={true} spy={true}>
+                <button className="btn btn-lg">Contact me</button>
+              </Link>
+              <router.Link to="/portafolio" className="text-gradient btn-link">
                 My Portafolio
-              </a>
+              </router.Link>
             </motion.div>
             {/**Social */}
             <motion.div
@@ -110,4 +114,3 @@ const Banner = () => {
   );
 };
 
-export default Banner;

@@ -1,64 +1,43 @@
 import React, { useState } from "react";
-// motion
 import { motion } from "framer-motion";
-// variants
-import { fadeIn } from "../variants";
+import { fadeIn } from "../../variants";
+import { validateForm, formContact } from "./helpers";
+import { portafolioApi } from "../../api";
+import { showErrorToast, showSucessToast } from "../../helpers";
 
-const Contact = () => {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
+export const Contact = () => {
+  const [form, setForm] = useState(formContact);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState({}); // Agregar el estado 'errors' para almacenar los errores de validación
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    // Validar el campo 'name'
-    if (!form.name.trim()) {
-      newErrors.name = "Please enter your name";
-    }
-
-    // Validar el campo 'email'
-    if (!form.email.trim()) {
-      newErrors.email = "Please enter your email";
-    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-      newErrors.email = "Please enter a valid email";
-    }
-
-    // Validar el campo 'message'
-    if (!form.message.trim()) {
-      newErrors.message = "Please enter a message";
-    }
-
-    setErrors(newErrors);
-
-    // Devuelve true si no hay errores, de lo contrario, devuelve false
-    return Object.keys(newErrors).length === 0;
-  };
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setForm((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
+    const { isValid, errors } = validateForm(form);
+
+    if (isValid) {
       setIsLoading(true);
 
-      setTimeout(() => {
-        setIsLoading(false); // Desactiva el estado de carga después de finalizar la operación
-        setForm({
-          name: "",
-          email: "",
-          message: ""
-        });
-      }, 2000); // Puedes ajustar el tiempo según tus necesidades
+      try {
+        console.log(form, 'Showing the formmmmm');
+        await portafolioApi.post("/messages", form);
+        setForm(formContact);
+        showSucessToast("The message has been sent successfully");
+      } catch (error) {
+        showErrorToast("Error sending the message");
+      } finally {
+        setIsLoading(false);
+        setErrors({});
+      }
+    } else {
+      // Set the 'errors' state with the validation errors
+      setErrors(errors);
     }
   };
 
@@ -102,7 +81,7 @@ const Contact = () => {
               onChange={handleInputChange}
               placeholder="Your name*"
             />
-            {errors.name && errors.name}
+            {errors.name && <p className="text-red-500">{errors.name}</p>}
             <input
               type="text"
               className="bg-transparent border-b py-3 outline-none w-full placeholder:text-white focus:border-accent transition-all"
@@ -111,7 +90,7 @@ const Contact = () => {
               onChange={handleInputChange}
               placeholder="Your email*"
             />
-            {errors.email && errors.email}
+            {errors.email && <p className="text-red-500">{errors.email}</p>}
             <textarea
               className="bg-transparent border-b py-12 outline-none w-full placeholder:text-white focus:border-accent transition-all resize-none mb-3"
               name="message"
@@ -119,7 +98,7 @@ const Contact = () => {
               onChange={handleInputChange}
               placeholder="Your message*"
             ></textarea>
-            {errors.message && errors.message}
+            {errors.message && <p className="text-red-500">{errors.message}</p>}
             <button className="btn btn-lg" type="submit" disabled={isLoading}>
               {isLoading ? "Sending..." : "Send Message"}
             </button>
@@ -129,5 +108,3 @@ const Contact = () => {
     </section>
   );
 };
-
-export default Contact;

@@ -5,7 +5,7 @@ import { MdOutlineDesignServices } from "react-icons/md";
 //motion
 import { AnimateSharedLayout, motion } from "framer-motion";
 //variants
-import { fadeIn } from "../variants";
+import { fadeIn } from "../../variants";
 //services data
 const services = [
   {
@@ -36,7 +36,7 @@ const services = [
   }
 ];
 
-const Services = () => {
+export const Services = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [elementsPerPage, setElementsPerPage] = useState(2);
   const [items, setItems] = useState([...services]);
@@ -132,4 +132,3 @@ const Services = () => {
   );
 };
 
-export default Services;

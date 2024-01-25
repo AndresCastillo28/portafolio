@@ -2,13 +2,13 @@ import { DiNodejsSmall, DiReact, DiHtml5, DiCss3, DiMongodb, DiJsBadge, DiAngula
 import { SiFlask } from "react-icons/si";
 import { BsBootstrap } from "react-icons/bs";
 import { motion } from "framer-motion";
-import { fadeIn } from "../variants";
+import { fadeIn } from "../../variants";
 
 // BsBootstrap
 
 
 
-const Skills = () => {
+export const Skills = () => {
   return (
     <div className="section" id="skills">
       <div className="container mx-auto">
