@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { MdOutlineDesignServices } from "react-icons/md";
 //motion
-import { AnimateSharedLayout, motion } from "framer-motion";
+import { motion } from "framer-motion";
 //variants
 import { fadeIn } from "../../variants";
 //services data
@@ -90,7 +90,7 @@ export const Services = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.3 }}
-            className="flex-1   lg:bg-bottom bg-no-repeat mix-blend-lighten mb-12 lg:mb-0"
+            className="flex-1 lg:bg-bottom bg-no-repeat mix-blend-lighten mb-12 lg:mb-0"
           >
             <h2 className="h2 text-accent mb-6">What I Do</h2>
             <h3 className="h3 max-w-[455px] mb-16">
@@ -107,7 +107,7 @@ export const Services = () => {
           >
             <div>
               {displayItems()}
-              <div class="flex justify-between mt-3">
+              <div className="flex justify-between mt-3">
                 <button
                   href="#"
                   className="btn w-9 h-9 mb-[42px] flex justify-center items-center"
