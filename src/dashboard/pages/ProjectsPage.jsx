@@ -16,7 +16,6 @@ export const ProjectsPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
   };
 
   return (

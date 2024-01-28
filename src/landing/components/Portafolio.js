@@ -20,7 +20,7 @@ import { Card, CardBody, Image } from "@nextui-org/react";
 
 export const Portafolio = () => {
   return (
-    <section className="section" id="portafolio">
+    <div className="section" id="portafolio">
       <div className="container mx-auto">
         <motion.h2
           variants={fadeIn("right", 0.3)}
@@ -143,6 +143,6 @@ export const Portafolio = () => {
           </div>
         </Swiper>
       </div>
-    </section>
+    </div>
   );
 };

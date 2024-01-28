@@ -8,14 +8,12 @@ export const useAuthStore = () => {
   const dispatch = useDispatch();
 
   const startLogin = async ({ username, password }) => {
-    console.log(username, password);
     dispatch(onChecking());
     try {
       const { data } = await portafolioApi.post("/auth/login", {
         username,
         password,
       });
-      console.log(data)
       showSucessToast("Login has been succesfully");
       localStorage.setItem("token", data.data.accessToken);
       localStorage.setItem("token-init-date", new Date().getTime());
@@ -31,7 +29,6 @@ export const useAuthStore = () => {
 
   const checkAuthToken = async () => {
     const token = localStorage.getItem("token");
-    console.log("In check token");
     if (!token) return dispatch(onLogout());
     try {
       const { data } = await portafolioApi.get("/auth/re-new");

@@ -25,7 +25,7 @@ export const AppRouter = () => {
 
   return (
     <BrowserRouter>
-      <div className="bg-site bg-no-repeat bg-cover overflow-hidden">
+      <div className="bg-blue-950 bg-no-repeat bg-cover overflow-hidden">
         <Routes>
           {/* Use PrivateRoute for the dashboard */}
           <Route

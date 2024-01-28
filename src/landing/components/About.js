@@ -8,8 +8,7 @@ import { motion } from "framer-motion";
 //variant
 import { fadeIn } from "../../variants";
 import { Link } from "react-scroll";
-import * as router from 'react-router-dom';
-
+import * as router from "react-router-dom";
 
 export const About = () => {
   const [ref, inView] = useInView({
@@ -37,8 +36,7 @@ export const About = () => {
           >
             <h2 className="h2 text-accent">About me</h2>
             <h3 className="h3 mb-4">
-              I'm a software engineering student at the South Colombian
-              University of Colombia
+              I'm a full stack software engineer passionate about innovation
             </h3>
             <p className="mb-6">
               Here is a list of the different projects I have worked on, along
@@ -69,9 +67,9 @@ export const About = () => {
               <Link to="contact" smooth={true} spy={true}>
                 <button className="btn btn-lg">Contact me</button>
               </Link>
-              <router.Link to="/portafolio" className="text-gradient btn-link">
+              <Link to="portafolio" smooth={true} spy={true} className="text-gradient btn-link">
                 My Portafolio
-              </router.Link>
+              </Link>
             </div>
           </motion.div>
         </div>

@@ -6,6 +6,7 @@ import { MdOutlineDesignServices } from "react-icons/md";
 import { motion } from "framer-motion";
 //variants
 import { fadeIn } from "../../variants";
+import { Link } from "react-scroll";
 //services data
 const services = [
   {
@@ -96,7 +97,9 @@ export const Services = () => {
             <h3 className="h3 max-w-[455px] mb-16">
               A software engineer designs, develops, and maintains software.
             </h3>
-            <button className="btn btn-sm">See my Work</button>
+            <Link to="portafolio" smooth={true} spy={true}>
+              <button className="btn btn-sm">See my Work</button>
+            </Link>
           </motion.div>
           <motion.div
             variants={fadeIn("left", 0.5)}
