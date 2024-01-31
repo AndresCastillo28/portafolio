@@ -1,5 +1,10 @@
+const {nextui} = require("@nextui-org/react");
+
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+  ],
   theme: {
     fontFamily: {
       primary: 'Orbitron',
@@ -18,16 +23,13 @@ module.exports = {
       xl: '1200px',
     },
     extend: {
-      colors: {
-        primary: '#0a0a0a',
-        accent: '#B809C3',
-      },
       backgroundImage: {
-        site: "url('./assets/site-bg.jpg')",
+        // site: "url('./assets/site-bg.jpg')",
         about: "url('./assets/yo.png')",
         services: "url('./assets/what_i_do.svg')",
       },
     },
   },
-  plugins: [],
+  darkMode: "class",
+  plugins: [nextui()],
 };

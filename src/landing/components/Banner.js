@@ -1,8 +1,13 @@
 import React from "react";
 //images
-import Image from '../../assets/banner.svg'
+import Image from "../../assets/banner.svg";
 //icons
-import { FaGithub, FaInstagram, FaFacebook, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaGithub,
+  FaInstagram,
+  FaFacebook,
+  FaLinkedinIn,
+} from "react-icons/fa";
 //type animation
 import { TypeAnimation } from "react-type-animation";
 //motion
@@ -10,7 +15,7 @@ import { motion } from "framer-motion";
 //variants
 import { fadeIn } from "../../variants";
 import { Link } from "react-scroll";
-import * as router from 'react-router-dom'
+import * as router from "react-router-dom";
 
 export const Banner = () => {
   return (
@@ -74,9 +79,15 @@ export const Banner = () => {
               <Link to="contact" smooth={true} spy={true}>
                 <button className="btn btn-lg">Contact me</button>
               </Link>
-              <router.Link to="/portafolio" className="text-gradient btn-link">
+              <Link
+                to="portafolio"
+                smooth={true}
+                spy={true}
+                // offset={-200}
+                className="text-gradient btn-link"
+              >
                 My Portafolio
-              </router.Link>
+              </Link>
             </motion.div>
             {/**Social */}
             <motion.div
@@ -86,26 +97,44 @@ export const Banner = () => {
               viewport={{ once: false, amount: 0.7 }}
               className="flex text-[20px] gap-x-6 max-w-max mx-auto lg:mx-0"
             >
-              <a href="https://github.com/AndresCastillo28" target="_blank" rel="noreferrer">
+              <a
+                href="https://github.com/AndresCastillo28"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaGithub />
               </a>
-              <a href="https://www.linkedin.com/in/andres-santiago-castillo-hernandez-690317220/" target="_blank" rel="noreferrer">
+              <a
+                href="https://www.linkedin.com/in/andres-santiago-castillo-hernandez-690317220/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaLinkedinIn />
               </a>
-              <a href="https://www.instagram.com/andr3scash/" target="_blank" rel="noreferrer">
+              <a
+                href="https://www.instagram.com/andr3scash/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaInstagram />
               </a>
-              <a href="https://web.facebook.com/andres.santiago.7796/" target="_blank" rel="noreferrer">
+              <a
+                href="https://web.facebook.com/andres.santiago.7796/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaFacebook />
               </a>
             </motion.div>
           </div>
           {/**image */}
-          <motion.div variants={fadeIn("down", 0.5)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.7 }}
-              className="hidden lg:flex flex-1 max-w-[320px] lg:max-w-[482px]">
+          <motion.div
+            variants={fadeIn("down", 0.5)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="hidden lg:flex flex-1 max-w-[320px] lg:max-w-[482px]"
+          >
             <img src={Image} />
           </motion.div>
         </div>
@@ -113,4 +142,3 @@ export const Banner = () => {
     </section>
   );
 };
-

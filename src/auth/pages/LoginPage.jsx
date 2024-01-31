@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuthStore } from "../../hooks";
-import { showErrorToast } from "../../helpers";
 
 export const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -10,15 +9,14 @@ export const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    startLogin({ username, password });
+    await startLogin({ username, password });
   };
 
-  useEffect(() => {
-    if (errorMessage !== undefined) {
-      showErrorToast(errorMessage);
-    }
-  }, [errorMessage]);
+  // useEffect(() => {
+  //   if (errorMessage !== undefined) {
+  //     showErrorToast(errorMessage);
+  //   }
+  // }, [errorMessage]);
 
   return (
     <div className="flex justify-center items-center h-screen">

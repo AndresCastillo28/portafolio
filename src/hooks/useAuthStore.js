@@ -10,15 +10,16 @@ export const useAuthStore = () => {
   const startLogin = async ({ username, password }) => {
     dispatch(onChecking());
     try {
-      const { data } = await portafolioApi.post("/auth", {
+      const { data } = await portafolioApi.post("/auth/login", {
         username,
         password,
       });
       showSucessToast("Login has been succesfully");
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.data.accessToken);
       localStorage.setItem("token-init-date", new Date().getTime());
-      dispatch(onLogin({ name: data.user.username, uid: data.user._id }));
+      dispatch(onLogin({ name: "Andres"}));
     } catch (error) {
+      console.error(error);
       dispatch(onLogout("Incorrect credentials"));
       setTimeout(() => {
         dispatch(clearErrorMessage());
@@ -30,10 +31,10 @@ export const useAuthStore = () => {
     const token = localStorage.getItem("token");
     if (!token) return dispatch(onLogout());
     try {
-      const { data } = await portafolioApi.get("/auth/check-token");
-      localStorage.setItem("token", data.token);
+      const { data } = await portafolioApi.get("/auth/re-new");
+      localStorage.setItem("token", data.data.accessToken);
       localStorage.setItem("token-init-date", new Date().getTime());
-      dispatch(onLogin({ name: data.user.username, uid: data.user._id }));
+      dispatch(onLogin({ name: "Andres" }));
     } catch (error) {
       localStorage.clear();
       dispatch(onLogout());

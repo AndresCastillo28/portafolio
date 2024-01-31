@@ -7,6 +7,7 @@ import {
   Skills,
   Services,
   Contact,
+  Portafolio
 } from "../components";
 
 export const LandingPage = () => {
@@ -16,6 +17,7 @@ export const LandingPage = () => {
       <Banner />
       <Nav />
       <About />
+      <Portafolio />
       <Skills />
       <Services />
       <Contact />

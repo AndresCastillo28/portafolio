@@ -5,3 +5,4 @@ export * from "./Header";
 export * from "./Nav";
 export * from "./Skills";
 export * from "./Services";
+export * from './Portafolio';

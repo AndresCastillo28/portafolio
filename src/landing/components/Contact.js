@@ -25,8 +25,7 @@ export const Contact = () => {
       setIsLoading(true);
 
       try {
-        console.log(form, 'Showing the formmmmm');
-        await portafolioApi.post("/messages", form);
+        const { data } = await portafolioApi.post("/contact-information", form);
         setForm(formContact);
         showSucessToast("The message has been sent successfully");
       } catch (error) {
@@ -36,13 +35,12 @@ export const Contact = () => {
         setErrors({});
       }
     } else {
-      // Set the 'errors' state with the validation errors
       setErrors(errors);
     }
   };
 
   return (
-    <section className="py-16 lg:section" id="contact">
+    <section className="section" id="contact">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row">
           {/* text */}

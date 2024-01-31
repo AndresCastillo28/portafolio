@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { LandingPage, PortafolioPage } from "../landing/pages";
+import { LandingPage } from "../landing/pages";
 import { DashboardRouter } from "./DashboardRouter";
 import { LoginPage } from "../auth/pages";
 import { useAuthStore } from "../hooks";
@@ -25,7 +25,7 @@ export const AppRouter = () => {
 
   return (
     <BrowserRouter>
-      <div className="bg-site bg-no-repeat bg-cover overflow-hidden">
+      <div className="bg-blue-950 bg-no-repeat bg-cover overflow-hidden">
         <Routes>
           {/* Use PrivateRoute for the dashboard */}
           <Route
@@ -38,7 +38,6 @@ export const AppRouter = () => {
             element={<PublicRoute element={<LoginPage />} />}
           />
           <Route path="/" element={<LandingPage />} />
-          <Route path="/portafolio" element={<PortafolioPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

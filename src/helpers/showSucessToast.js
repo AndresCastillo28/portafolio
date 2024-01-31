@@ -6,7 +6,7 @@ export const showSucessToast = (message) => {
     toast: true,
     text: message,
     icon: "success",
-    timer: 1500,
+    timer: 5000,
     timerProgressBar: true,
     showConfirmButton: false,
   });
